@@ -7,5 +7,5 @@ require 'app/player'
 require 'app/board'
 require 'app/board_case'
 require 'views/show'
-
+#lacement du jeu
 Game.new.perform

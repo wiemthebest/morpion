@@ -3,8 +3,8 @@ class BoardCase
 
   attr_accessor :position, :content
 
-  def initialize(position, content)
+  def initialize(position)
     @position = position
-    @content = content
+    @content = " "
   end
 end

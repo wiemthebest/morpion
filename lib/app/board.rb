@@ -5,15 +5,15 @@ class Board
 
   def initialize
     # Initialize all 9 BoardCase
-    @A1 = BoardCase.new("a1", " ")
-    @A2 = BoardCase.new("a2", " ")
-    @A3 = BoardCase.new("a3", " ")
-    @B1 = BoardCase.new("b1", " ")
-    @B2 = BoardCase.new("b2", " ")
-    @B3 = BoardCase.new("b3", " ")
-    @C1 = BoardCase.new("c1", " ")
-    @C2 = BoardCase.new("c2", " ")
-    @C3 = BoardCase.new("c3", " ")
+    @A1 = BoardCase.new("a1")
+    @A2 = BoardCase.new("a2")
+    @A3 = BoardCase.new("a3")
+    @B1 = BoardCase.new("b1")
+    @B2 = BoardCase.new("b2")
+    @B3 = BoardCase.new("b3")
+    @C1 = BoardCase.new("c1")
+    @C2 = BoardCase.new("c2")
+    @C3 = BoardCase.new("c3")
 
     @game_state_variable = false
 
@@ -23,12 +23,12 @@ class Board
 
   end
 
-  # Function that write user symbol in the case choose by current user
+  # chercher la position choisis par le joueur et inscrire la valeur de son symbole dedans
   def write_on_case (case_choose, player_symbol)
-    @array_cases.map { |item| item.position == case_choose ? item.content = player_symbol  : item }
+    @array_cases.map { |bcase| bcase.position == case_choose ? bcase.content = player_symbol  : bcase }
   end
 
-  # This function verify each win possibilities and get the game_state_variable at true if find any
+  # verifie si le joueur a gagné
   def game_state
 
     if @A1.content == "o" && @A2.content == "o" && @A3.content == "o" || @A1.content == "x" && @A2.content == "x" && @A3.content == "x"
@@ -69,13 +69,9 @@ class Board
     if @A3.content == "o" && @B2.content == "o" && @C1.content == "o" || @A3.content == "x" && @B2.content == "x" && @C1.content == "x"
      @game_state_variable = true
     end
-
-  end
-
-  # Methode that verify if the board is full of "x" and "o" to stop the game as null game
-  # !!! This methode is not finish
-  def game_nil
-    @array_cases.each { |item| item.content == /[:SPACE:]/ ? @game_nil_variable = true : @game_nil_variable = false }
+    # verifie si une case est encore vide alors le match n'est pas terminé
+    @game_nil_variable = true
+    @array_cases.each { |item| item.content == " " ? @game_nil_variable = false : nil}
   end
 
   # This is a view game. Normaly should be in a view class
